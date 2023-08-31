@@ -1,0 +1,61 @@
+type GroupInfo @entity(immutable: true) {
+  id: Bytes!
+  groupId: BigInt! # uint256
+  name: String! # string
+  desc: String! # string
+  icon: String! # string
+  privacy: Int! # uint8
+  asset: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type JoinRequested @entity(immutable: true) {
+  id: Bytes!
+  groupId: BigInt! # uint256
+  identityCommitment: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type MemberAdded @entity(immutable: true) {
+  id: Bytes!
+  groupId: BigInt! # uint256
+  identityCommitment: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type PollAdded @entity(immutable: true) {
+  id: Bytes!
+  groupId: BigInt! # uint256
+  pollId: BigInt! # uint256
+  title: String! # string
+  voteMsgs: [String!]! # string[]
+  desc: String! # string
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type PoolVoteAdded @entity(immutable: true) {
+  id: Bytes!
+  groupId: BigInt! # uint256
+  poolId: BigInt! # uint256
+  voteMsg: String! # string
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type VoteAdded @entity(immutable: true) {
+  id: Bytes!
+  groupId: BigInt! # uint256
+  voteMsg: Bytes! # bytes32
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}

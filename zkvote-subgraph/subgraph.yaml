@@ -1,0 +1,38 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Vote
+    network: consensys-zkevm
+    source:
+      address: "0xA610bE3F3220C932D7215dA9C16f1105F1b278C2"
+      abi: Vote
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - GroupInfo
+        - JoinRequested
+        - MemberAdded
+        - PollAdded
+        - PoolVoteAdded
+        - VoteAdded
+      abis:
+        - name: Vote
+          file: ./abis/Vote.json
+      eventHandlers:
+        - event: GroupInfo(indexed uint256,string,string,string,uint8,address)
+          handler: handleGroupInfo
+        - event: JoinRequested(indexed uint256,indexed uint256)
+          handler: handleJoinRequested
+        - event: MemberAdded(indexed uint256,indexed uint256)
+          handler: handleMemberAdded
+        - event: PollAdded(indexed uint256,indexed uint256,string,string[],string)
+          handler: handlePollAdded
+        - event: PoolVoteAdded(indexed uint256,indexed uint256,string)
+          handler: handlePoolVoteAdded
+        - event: VoteAdded(indexed uint256,bytes32)
+          handler: handleVoteAdded
+      file: ./src/vote.ts
